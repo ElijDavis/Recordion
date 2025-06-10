@@ -2,7 +2,9 @@ import Header from "@/components/Header";
 import VideoCard from '@/components/VideoCard'
 import { dummyCards } from '@/constants';
 
-const Page = async ({params}:ParamsWithSearch) => {
+//{params}:ParamsWithSearch
+//the line above was inside the empty parenthesis after async
+const Page = async () => {
     //const {id} = await params;
     return (
         <div className="wrapper page">
