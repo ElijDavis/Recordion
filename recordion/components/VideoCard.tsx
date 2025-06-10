@@ -6,7 +6,7 @@ const VideoCard = ({
     id, title, thumbnail, userImg, username, createdAt, views, visibility, duration
 }: VideoCardProps) => {
     return (
-        <Link href={'/video/${id}'} className="video-card">
+        <Link href={`/video/${id}`} className="video-card">
             <Image src={thumbnail} alt="thumbnail" width={290} height={160} className="thumbnail" />
             <article>
                 <div>
