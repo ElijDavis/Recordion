@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Elijah-Davis-s-workspace-1hbj5c.us-east-1.xata.sh/db/Elijah-Recordion",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
