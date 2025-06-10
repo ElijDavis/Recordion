@@ -3,7 +3,7 @@ import VideoCard from '@/components/VideoCard'
 import { dummyCards } from '@/constants';
 
 const Page = async ({params}:ParamsWithSearch) => {
-    const {id} = await params;
+    //const {id} = await params;
     return (
         <div className="wrapper page">
             <Header subHeader='elijahadavis@hotmail.com' title='Elijah Davis' userImg="/assets/images/dummy.jpg"/>
