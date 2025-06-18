@@ -64,7 +64,7 @@ const Page = () => {
                 setError('Please upload video and thumbnail');
                 return;
             }
-            if(!formData.title || formData.description){
+            if(!formData.title || !formData.description){
                 setError('Please fill in all the details');
                 return;
             }
@@ -98,6 +98,7 @@ const Page = () => {
                 videoId,
                 thumbnailUrl: thumbnailCdnUrl,
                 ...formData,
+                visibility: formData.visibility as Visibility,
                 duration: videoDuration
             })
 
