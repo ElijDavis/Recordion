@@ -74,7 +74,10 @@ const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
 const authHandlers = toNextJsHandler(auth.handler)
 
 //No. 2: You may need to delete this too. refer to the mulit line comment below
-export const {GET} = authHandlers;
+//export const {GET} = authHandlers;
+
+export const GET = authHandlers.GET;
+export const POST = authHandlers.POST;
 
 
 /*** If anything breaks just uncomment the line below 
@@ -108,7 +111,7 @@ export const {GET} = authHandlers;
 // app/api/auth/route.ts or wherever your route file is
 //const authHandlers = toNextJsHandler(auth.handler);
 
-export const POST = async (req: NextRequest) => {
+/*export const POST = async (req: NextRequest) => {
   const decision = await protectedAuth(req);
   if (decision.isDenied()) {
     if (decision.reason.isEmail()) {
@@ -130,4 +133,4 @@ export const POST = async (req: NextRequest) => {
     console.error("BetterAuth POST failed:", err);
     return new Response("Internal Server Error", { status: 500 });
   }
-};
+};*/
