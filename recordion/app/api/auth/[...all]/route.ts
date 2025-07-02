@@ -10,7 +10,7 @@ import { headers } from "next/headers";
 //const authHandlers = toNextJsHandler(auth.handler) //taken out because a new decalration was made further down
 
 //Email validation
-const emailValidation = aj.withRule(validateEmail({mode: 'LIVE', block: ['DISPOSABLE', 'INVALID', 'NO_MX_RECORDS']}))
+/*const emailValidation = aj.withRule(validateEmail({mode: 'LIVE', block: ['DISPOSABLE', 'INVALID', 'NO_MX_RECORDS']}))
 
 const rateLimit = aj.withRule(
     slidingWindow({
@@ -48,7 +48,7 @@ const rateLimit = aj.withRule(
     return rateLimit.protect(req, {fingerprint: userId});
 }*/
 
-const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
+/*const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
   const session = await auth.api.getSession({ headers: await headers() }); // ✅ safest way now
 
   let userId = session?.user?.id ?? ip(req) ?? "127.0.0.1";
@@ -68,7 +68,7 @@ const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
   }
 
   return rateLimit.protect(req, { fingerprint: userId });
-};
+};*/
 
 
 const authHandlers = toNextJsHandler(auth.handler)
@@ -133,4 +133,4 @@ export const POST = authHandlers.POST;
     console.error("BetterAuth POST failed:", err);
     return new Response("Internal Server Error", { status: 500 });
   }
-};*/
+};*/ 
