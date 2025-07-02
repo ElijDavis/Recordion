@@ -5,9 +5,18 @@ import aj from "./lib/arcjet";
 import { createMiddleware, detectBot, shield } from "@arcjet/next";
 
 export async function middleware(request: NextRequest, response: NextResponse) {
-    const session = await auth.api.getSession({
+    /*const session = await auth.api.getSession({
         headers: await headers()
-    })
+    })*/
+   let session = null;
+    try {
+        session = await auth.api.getSession({
+            headers: await headers()
+        });
+    } catch (err) {
+        console.error("Session retrieval failed in middleware:", err);
+    }
+
     if(!session) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
     }

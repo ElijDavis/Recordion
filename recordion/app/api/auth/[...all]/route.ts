@@ -21,7 +21,14 @@ const rateLimit = aj.withRule(
 )
 
 const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
-    const session = await auth.api.getSession({headers: req.headers});
+    //const session = await auth.api.getSession({headers: req.headers});
+    let session = null;
+    try {
+        session = await auth.api.getSession({ headers: req.headers });
+    } catch (err) {
+        console.error("Session retrieval failed in auth route:", err);
+    }
+
     let userId: string;
 
     if(session?.user?.id) {
@@ -45,6 +52,7 @@ const authHandlers = toNextJsHandler(auth.handler)
 //No. 2: You may need to delete this too. refer to the mulit line comment below
 export const {GET} = authHandlers;
 
+
 /*** If anything breaks just uncomment the line below 
  and delete the lines with comments numbered 1 and 2 ***/
 //export const {GET, POST} = toNextJsHandler(auth.handler)
@@ -62,5 +70,13 @@ export const POST = async (req: NextRequest) => {
             throw new Error(`Shield turned on, protected against mailicions actions: ${decision.reason}`);
         }
     }
-    return authHandlers.POST(req);
+
+    try {
+        return authHandlers.POST(req);
+    } catch (err) {
+        console.error("POST handler failed:", err);
+        return new Response("Internal Server Error", { status: 500 });
+    }
+
+    //return authHandlers.POST(req);
 }
