@@ -1,6 +1,7 @@
-import React from "react";
+/*import React from "react";
 import { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
+
 
 const Layout = ({children}: {children: ReactNode}) => {
     return (
@@ -11,4 +12,29 @@ const Layout = ({children}: {children: ReactNode}) => {
     )
 }
 
-export default Layout
+export default Layout*/
+
+import React, { ReactNode } from "react";
+import Navbar from "@/components/Navbar";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
+
+const Layout = async ({ children }: { children: ReactNode }) => {
+  const session = await auth.api.getSession({
+    headers: await headers(), // ✅ Await headers() to get the Headers object
+  });
+
+  if (!session) {
+    redirect("/sign-in");
+  }
+
+  return (
+    <div>
+      <Navbar />
+      {children}
+    </div>
+  );
+};
+
+export default Layout;
