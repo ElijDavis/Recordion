@@ -21,13 +21,7 @@ const rateLimit = aj.withRule(
 )
 
 const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
-    //const session = await auth.api.getSession({headers: req.headers});
-    let session = null;
-    try {
-        session = await auth.api.getSession({ headers: req.headers });
-    } catch (err) {
-        console.error("Session retrieval failed in auth route:", err);
-    }
+    const session = await auth.api.getSession({headers: req.headers});
 
     let userId: string;
 
