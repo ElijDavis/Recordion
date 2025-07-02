@@ -9,8 +9,6 @@ const Page = () => {
         return await authClient.signIn.social({provider: 'google'})
     }
 
-    //await authClient.signIn("google");
-
     return(
         <main className="sign-in">
             <aside className="testimonial">
