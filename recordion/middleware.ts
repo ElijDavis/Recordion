@@ -8,7 +8,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
     const session = await auth.api.getSession({
         headers: await headers()
     })
-
     if(!session) {
         return NextResponse.redirect(new URL('/sign-in', request.url))
     }
