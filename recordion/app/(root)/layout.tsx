@@ -19,15 +19,23 @@ import Navbar from "@/components/Navbar";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { NextRequest, NextResponse } from "next/server";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
-  const session = await auth.api.getSession({
+  /*const session = await auth.api.getSession({
     headers: await headers(), // ✅ Await headers() to get the Headers object
   });
 
   if (!session) {
     redirect("/sign-in");
-  }
+  }*/
+
+const session = await auth.api.getSession({
+    headers: await headers()
+})
+if(!session) {
+    return NextResponse.redirect(new URL('/sign-in'))
+}
 
   return (
     <div>
