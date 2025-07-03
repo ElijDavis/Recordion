@@ -68,6 +68,9 @@ export const POST = async (req: NextRequest) => {
 
 // app/api/auth/route.ts or wherever your route file is
 
+
+
+
 import aj from "@/lib/arcjet";
 import { slidingWindow } from "@arcjet/next";
 import { validateEmail } from "@arcjet/next";
