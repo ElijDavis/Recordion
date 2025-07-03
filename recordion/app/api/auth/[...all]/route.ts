@@ -32,6 +32,7 @@ const protectedAuth = async (req: NextRequest): Promise<ArcjetDecision> => {
     }
 
     if(req.nextUrl.pathname.startsWith('/api/auth/sign-in')) {
+        console.log('Sign-in request detected, checking email validation...');
         const body = await req.clone().json();
         if(typeof body.email === 'string') {
             return emailValidation.protect(req, {email: body.email});
